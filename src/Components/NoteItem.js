@@ -1,12 +1,16 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import noteContext from '../Context/notes/noteContext';
 
 export const NoteItem = (props) => {
+    // Context of Notes
+    const context = useContext(noteContext);
+    const { deleteNote } = context;
     const { note } = props;
+    // To change the icon of options and close
     const [toggle, setToggle] = useState("ellipsis");
     const toggleButton = () => {
         setToggle((prevToggle) => (prevToggle === "ellipsis" ? "xmark" : "ellipsis"));
     };
-
     return (
         <div className='col-md-3'>
             <div className="card border-secondary my-3">
@@ -27,7 +31,7 @@ export const NoteItem = (props) => {
                             {/* Delete & Edit Buttons */}
                             <div className="collapse multi-collapse" id={`multiCollapseExample${note._id}`}>
                                 <div className="d-flex flex-column">
-                                    <i className="fa-solid fa-trash my-2"></i>
+                                    <i className="fa-solid fa-trash my-2" onClick={() => { deleteNote(note._id) }}></i>
                                     <i className="fa-solid fa-pen-to-square my-2"></i>
                                 </div>
                             </div>

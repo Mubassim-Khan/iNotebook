@@ -27,11 +27,11 @@ export const AddNote = () => {
                     <input type="text" className="form-control" id="description" name='description' onChange={onChange} />
                     {/* <div id="emailHelp" className="form-text">We'll never share your email and password with anyone else.</div> */}
                 </div>
-                <div className="mb-3 form-check">
+                {/* <div className="mb-3 form-check">
                     <input type="checkbox" className="form-check-input" id="exampleCheck1" />
                     <label className="form-check-label" htmlFor="exampleCheck1">Remember me</label>
-                </div>
-                <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
+                </div> */}
+                <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Add Note</button>
             </form>
         </div>
     )

@@ -5,7 +5,7 @@ import { AddNote } from './AddNote';
 
 export const Notes = () => {
     const context = useContext(noteContext);
-    const { notes, addNote } = context;
+    const { notes } = context;
     return (
         <>
         {/* Import new notes from AddNote component */}
