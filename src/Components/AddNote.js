@@ -4,7 +4,7 @@ import noteContext from '../Context/notes/noteContext';
 export const AddNote = () => {
     const context = useContext(noteContext);
     const { addNote } = context;
-    const [note, setNote] = useState({ title: "", description: "", tag: "def" });
+    const [note, setNote] = useState({ title: "", description: "", tag: "null" });
     // New content of note is added from Context (NoteState)
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -25,12 +25,12 @@ export const AddNote = () => {
                 <div className="mb-3">
                     <label htmlFor="description" className="form-label">Description</label>
                     <input type="text" className="form-control" id="description" name='description' autoComplete='off' onChange={onChange} />
-                    {/* <div id="emailHelp" className="form-text">We'll never share your email and password with anyone else.</div> */}
                 </div>
-                {/* <div className="mb-3 form-check">
-                    <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                    <label className="form-check-label" htmlFor="exampleCheck1">Remember me</label>
-                </div> */}
+                <div className="mb-3">
+                    <label htmlFor="tag" className="form-label">Tag</label>
+                    <input type="text" className="form-control" id="tag" name='tag' autoComplete='off' onChange={onChange} />
+                    <div id="emailHelp" className="form-text">Enter tag to easily categorize notes.</div>
+                </div>
                 <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Add Note</button>
             </form>
         </div>

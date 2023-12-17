@@ -1,16 +1,7 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import noteContext from '../Context/notes/noteContext'
-import { NoteItem } from './NoteItem';
-import { AddNote } from './AddNote';
+import React, { useRef, useState } from 'react'
 
-export const Notes = () => {
-    const context = useContext(noteContext);
-    const { notes, fetchNotes } = context;
-    // Function call using useEffect
-    useEffect(() => {
-        fetchNotes();
-        // eslint-disable-next-line
-    }, []);
+export const UpdateNote = (props) => {
+    const { updateNote } = props;
 
     const [note, setNote] = useState({ Etitle: "", Edescription: "", Etag: "null" });
     // Updated content of note is added
@@ -24,17 +15,13 @@ export const Notes = () => {
     // useRef to populate the previous data fields
     const ref = useRef("");
     // Function to update a note
-    const updateNote = (currentNote) => {
-        ref.current.click();
-        setNote({ Etitle: currentNote.title, Edescription: currentNote.description, Etag: currentNote.tag });
-    }
-
+    // const updateNote = (currentNote) => {
+    //     ref.current.click();
+    //     setNote({ Etitle: currentNote.title, Edescription: currentNote.description, Etag: currentNote.tag });
+    // }
+    updateNote();
     return (
         <>
-            {/* Import new notes from AddNote component */}
-            <AddNote />
-
-            {/*  Modal to update data  */}
             <button type="button" className="btn btn-primary d-none" data-bs-toggle="modal" ref={ref} data-bs-target="#exampleModal"></button>
             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
@@ -67,13 +54,6 @@ export const Notes = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div className="row my-3">
-                <h3>Your Notes</h3>
-                {notes.map((note) => {
-                    return <NoteItem key={note._id} updateNote={updateNote} note={note} />
-                })}
             </div>
         </>
     )

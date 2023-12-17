@@ -5,7 +5,7 @@ export const NoteItem = (props) => {
     // Context of Notes
     const context = useContext(noteContext);
     const { deleteNote } = context;
-    const { note } = props;
+    const { note, updateNote } = props;
     // To change the icon of options and close
     const [toggle, setToggle] = useState("ellipsis");
     const toggleButton = () => {
@@ -32,11 +32,12 @@ export const NoteItem = (props) => {
                             <div className="collapse multi-collapse" id={`multiCollapseExample${note._id}`}>
                                 <div className="d-flex flex-column">
                                     <i className="fa-solid fa-trash my-2" onClick={() => { deleteNote(note._id) }}></i>
-                                    <i className="fa-solid fa-pen-to-square my-2"></i>
+                                    <i className="fa-solid fa-pen-to-square my-2" onClick={() => updateNote(note)}></i>
                                 </div>
                             </div>
                         </i>
                     </div>
+                    <p className="form-text">Note Tag: {note.tag}</p>
                     {/* Note Description */}
                     <p className="card-text">{note.description}</p>
                 </div>
