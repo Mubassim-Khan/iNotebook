@@ -5,17 +5,19 @@ import { AddNote } from './AddNote';
 
 export const Notes = () => {
     const context = useContext(noteContext);
-    const { notes, fetchNotes } = context;
+    const { notes, fetchNotes, editNote } = context;
     // Function call using useEffect
     useEffect(() => {
         fetchNotes();
         // eslint-disable-next-line
     }, []);
+    // State of note set with id & edited (title, description, tag) 
+    const [note, setNote] = useState({ id: "", Etitle: "", Edescription: "", Etag: "null" });
 
-    const [note, setNote] = useState({ Etitle: "", Edescription: "", Etag: "null" });
-    // Updated content of note is added
+    // Updated content of note is added & also closes model with ref to close btn
     const handleSubmit = (e) => {
-        e.preventDefault();
+        editNote(note.id, note.Etitle, note.Etitle, note.Edescription);
+        refClose.current.click();
     }
     // Set the title, description & tag of updated note
     const onChange = (e) => {
@@ -23,10 +25,11 @@ export const Notes = () => {
     }
     // useRef to populate the previous data fields
     const ref = useRef("");
-    // Function to update a note
+    const refClose = useRef("");
+    // Function to update a note & set state of note with all 4 attributes
     const updateNote = (currentNote) => {
         ref.current.click();
-        setNote({ Etitle: currentNote.title, Edescription: currentNote.description, Etag: currentNote.tag });
+        setNote({ id: currentNote._id, Etitle: currentNote.title, Edescription: currentNote.description, Etag: currentNote.tag });
     }
 
     return (
@@ -62,7 +65,7 @@ export const Notes = () => {
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="button" className="btn btn-primary" onClick={handleSubmit}>Update Note</button>
                         </div>
                     </div>
