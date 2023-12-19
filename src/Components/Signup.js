@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-export const Signup = () => {
+export const Signup = (props) => {
   const hostURL = "http://localhost:8000";
   // State to keep track of credentials
   const [credentials, setCredentials] = useState({ name: "", email: "", password: "", confirmpassword: "" });
@@ -24,9 +24,10 @@ export const Signup = () => {
     if (json.success === true) {
       // Save the authtoken in local storage & redirect
       localStorage.setItem('token', json.JWT_AuthToken);
-      navigate("/");
+      navigate("/login");
+      props.showAlertMsg("Account Created Successfully", "success")
     } else {
-      alert("This Email address is already registered by a user")
+      props.showAlertMsg("This Email address is already registered with a user", "danger");
     }
   }
   // to display the change in every keystroke at input fields 

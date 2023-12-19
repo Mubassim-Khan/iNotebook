@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-export const Login = () => {
+export const Login = (props) => {
     const hostURL = "http://localhost:8000";
     // State to keep track of credentials
     const [credentials, setCredentials] = useState({ email: "", password: "" });
@@ -23,8 +23,9 @@ export const Login = () => {
             // Save the authtoken in local storage & redirect
             localStorage.setItem('token', json.JWT_AuthToken);
             navigate("/");
+            props.showAlertMsg("Logged in Successfully", "success");
         } else {
-            alert("Invalid Credentials")
+            props.showAlertMsg("Invalid Credentials", "danger");
         }
     }
     // to display the change in every keystroke at input fields 

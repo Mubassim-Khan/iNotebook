@@ -3,7 +3,7 @@ import noteContext from '../Context/notes/noteContext'
 import { NoteItem } from './NoteItem';
 import { AddNote } from './AddNote';
 
-export const Notes = () => {
+export const Notes = (props) => {
     const context = useContext(noteContext);
     const { notes, fetchNotes, editNote } = context;
     // Function call using useEffect
@@ -18,6 +18,7 @@ export const Notes = () => {
     const handleSubmit = () => {
         editNote(note.id, note.Etitle, note.Edescription, note.Etag);
         refClose.current.click();
+        props.showAlertMsg("Note Updated Successfully", "success")
     }
     // Set the title, description & tag of updated note
     const onChange = (e) => {
@@ -35,7 +36,7 @@ export const Notes = () => {
     return (
         <>
             {/* Import new notes from AddNote component */}
-            <AddNote />
+            <AddNote showAlertMsg={props.showAlertMsg} />
 
             {/*  Modal to update data  */}
             <button type="button" className="btn btn-primary d-none" data-bs-toggle="modal" ref={ref} data-bs-target="#exampleModal"></button>
@@ -80,7 +81,7 @@ export const Notes = () => {
                     {notes.length === 0 && "No notes to display, Please add a note."}
                 </div>
                 {notes.map((note) => {
-                    return <NoteItem key={note._id} updateNote={updateNote} note={note} />
+                    return <NoteItem key={note._id} updateNote={updateNote} note={note} showAlertMsg={props.showAlertMsg} />
                 })}
             </div>
         </>
