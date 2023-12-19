@@ -9,6 +9,8 @@ import {
   Route
 } from "react-router-dom"
 import { Alert } from './Components/Alert';
+import { Login } from './Components/Login';
+import { Signup } from './Components/Signup';
 
 function App() {
   return (
@@ -23,6 +25,12 @@ function App() {
             </Routes>
             <Routes>
               <Route exact path="/about" element={<About />}></Route>
+            </Routes>
+            <Routes>
+              <Route exact path="/login" element={<Login />}></Route>
+            </Routes>
+            <Routes>
+              <Route exact path="/signup" element={<Signup />}></Route>
             </Routes>
           </div>
         </BrowserRouter>
