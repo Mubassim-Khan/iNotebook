@@ -21,7 +21,7 @@ export const Navbar = () => {
                     </ul>
                     <form className="d-flex">
                         <Link className="btn btn-outline-primary mx-2" to="/login" role="button">Log In</Link>
-                        <Link className="btn btn-outline-primary mx-2" to="/signup" role="button">Sign Up</Link>
+                        <Link className="btn btn-primary mx-2" to="/signup" role="button">Sign Up</Link>
                     </form>
                 </div>
             </div>

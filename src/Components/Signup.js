@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 export const Signup = (props) => {
   const hostURL = "http://localhost:8000";
@@ -58,7 +59,8 @@ export const Signup = (props) => {
         <div className="text my-1">
           {credentials.password !== credentials.confirmpassword && "Password does not matches"}
         </div>
-        <button disabled={credentials.name.length < 3 || credentials.password.length < 6 || credentials.confirmpassword.length < 6 || credentials.password !== credentials.confirmpassword} type="submit" className="btn btn-primary my-2">Submit</button>
+        <button disabled={credentials.name.length < 3 || credentials.password.length < 6 || credentials.confirmpassword.length < 6 || credentials.password !== credentials.confirmpassword} type="submit" className="btn btn-primary my-2">Sign Up</button>
+        <div id="logIn" className="form-text my-2">Already have an account? <Link style={{ textDecoration: "none" }} to="/login"> Sign in </Link> </div>
       </form>
     </div>
   )

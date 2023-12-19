@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 export const Login = (props) => {
     const hostURL = "http://localhost:8000";
@@ -45,7 +46,8 @@ export const Login = (props) => {
                     <input type="password" className="form-control" name='password' id="password" value={credentials.password} onChange={onChange} />
                     <div id="emailHelp" className="form-text">We'll never share your email and password with anyone else.</div>
                 </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary">Log In</button>
+                <div id="signIn" className="form-text my-2">New to iNotebook? <Link style={{ textDecoration: "none" }} to="/signup"> Create an account </Link> </div>
             </form>
         </div>
     )
