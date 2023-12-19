@@ -1,25 +1,31 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext } from 'react'
+import noteContext from '../Context/notes/noteContext';
 
-export const UpdateNote = (props) => {
-    const { updateNote } = props;
+export const UpdateNote = () => {
+    const context = useContext(noteContext);
+    const { note, setNote, refClose, ref, handleSubmit } = context;
+    // State of note set with id & edited (title, description, tag) 
+    // const [note, setNote] = useState({ id: "", Etitle: "", Edescription: "", Etag: "null" });
 
-    const [note, setNote] = useState({ Etitle: "", Edescription: "", Etag: "null" });
-    // Updated content of note is added
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    }
+    // // Updated content of note is added & also closes model with ref to close btn
+    // const handleSubmit = () => {
+    //     editNote(note.id, note.Etitle, note.Etitle, note.Edescription);
+    //     refClose.current.click();
+    // }
     // Set the title, description & tag of updated note
     const onChange = (e) => {
         setNote({ ...note, [e.target.name]: e.target.value })
     }
-    // useRef to populate the previous data fields
-    const ref = useRef("");
-    // Function to update a note
+
+    // // useRef to populate the previous data fields
+    // const ref = useRef("");
+    // const refClose = useRef("");
+    // // Function to update a note & set state of note with all 4 attributes
     // const updateNote = (currentNote) => {
     //     ref.current.click();
-    //     setNote({ Etitle: currentNote.title, Edescription: currentNote.description, Etag: currentNote.tag });
-    // }
-    updateNote();
+    //     setNote({ id: currentNote._id, Etitle: currentNote.title, Edescription: currentNote.description, Etag: currentNote.tag });
+    // };
+
     return (
         <>
             <button type="button" className="btn btn-primary d-none" data-bs-toggle="modal" ref={ref} data-bs-target="#exampleModal"></button>
@@ -49,7 +55,7 @@ export const UpdateNote = (props) => {
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="button" className="btn btn-primary" onClick={handleSubmit}>Update Note</button>
                         </div>
                     </div>

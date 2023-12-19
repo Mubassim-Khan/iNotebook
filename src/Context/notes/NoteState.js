@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import NoteContext from "./noteContext";
 
 const NoteState = (props) => {
@@ -18,7 +18,6 @@ const NoteState = (props) => {
                 },
             });
             const json = await response.json();
-            console.log(json)
             setNotes(json);
         } catch (err) {
             console.log(err);
@@ -36,20 +35,8 @@ const NoteState = (props) => {
             },
             body: JSON.stringify({ title, description, tag })
         });
-        const json = await response.json();
-        console.log(json)
-        console.log("A new note added")
-
+        const note = await response.json();
         // Method for concatinating notes JSON 
-        let note = {
-            "_id": "6579f30249dda5c2ea5272743889",
-            "user": "6576178be90a23032f02d9a2",
-            "title": title,
-            "description": description,
-            "tag": tag,
-            "date": "2023-12-13T18:08:02.598Z",
-            "__v": 0
-        };
         setNotes(notes.concat(note));
     }
 
@@ -65,7 +52,6 @@ const NoteState = (props) => {
             body: JSON.stringify({ title, description, tag }),
         });
         const json = await response.json();
-        console.log(json);
         // A new variable to set the state according to the JSON (notes)
         const newNotes = JSON.parse(JSON.stringify(notes));
         // Logic for editing a Note
@@ -92,12 +78,28 @@ const NoteState = (props) => {
             },
         });
         const json = await response.json();
-        console.log(json);
-
-        console.log("Deleting note with id: " + id);
         const newNotes = notes.filter((note) => { return note._id !== id })
         setNotes(newNotes);
     }
+
+    // -----
+
+    // const [note, setNote] = useState({ id: "", Etitle: "", Edescription: "", Etag: "null" });
+
+    // const refClose = useRef("");
+    // const ref = useRef("");
+
+    // const handleSubmit = () => {
+    //     editNote(note.id, note.Etitle, note.Etitle, note.Edescription);
+    //     refClose.current.click();
+    // }
+
+    // const updateNote = (currentNote) => {
+    //     ref.current.click();
+    //     setNote({ id: currentNote._id, Etitle: currentNote.title, Edescription: currentNote.description, Etag: currentNote.tag });
+    // };
+
+    // <NoteContext.Provider value={{ notes, addNote, editNote, deleteNote, fetchNotes, handleSubmit, updateNote, refClose, setNote, note }}>
 
     return (
         <NoteContext.Provider value={{ notes, addNote, editNote, deleteNote, fetchNotes }}>
