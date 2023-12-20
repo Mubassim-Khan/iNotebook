@@ -2,3 +2,39 @@ i {
   cursor: pointer;
 }
  
+/* Sign in pasowrd matching */
+.passwordMatching {
+  font-weight: bold;
+  color: red;
+}
+
+/* Login and Sign in redirect */
+
+.redirect {
+  font-size: medium;
+  color: black;
+  font-weight: 400;
+}
+
+.redirect--link {
+  text-decoration: none;
+  color: blue;
+  font-weight: bold;
+}
+
+/* Alert */
+
+.alert--component {
+  height: 50px;
+}
+
+/* Note card  */
+
+.card{
+  border: 1px solid #fff;
+}
+
+.cards {
+  border-radius: 10px;
+  box-shadow: 7px 5px 12px rgb(66, 66, 66);
+}

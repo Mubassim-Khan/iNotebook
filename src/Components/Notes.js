@@ -37,7 +37,7 @@ export const Notes = (props) => {
     const updateNote = (currentNote) => {
         ref.current.click();
         setNote({ id: currentNote._id, Etitle: currentNote.title, Edescription: currentNote.description, Etag: currentNote.tag });
-    }
+    };
 
     return (
         <>
@@ -46,7 +46,7 @@ export const Notes = (props) => {
 
             {/*  Modal to update data  */}
             <button type="button" className="btn btn-primary d-none" data-bs-toggle="modal" ref={ref} data-bs-target="#exampleModal"></button>
-            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade mt-3" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">

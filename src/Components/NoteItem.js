@@ -13,8 +13,8 @@ export const NoteItem = (props) => {
     };
     return (
         <div className='col-md-3'>
-            <div className="card border-secondary my-3">
-                <div className="card-body mb-2 mt-2">
+            <div className="card my-3">
+                <div className="cards card-body mb-2 mt-2">
                     <div className="d-inline-flex align-items-center gap-1">
                         {/* Note Title */}
                         <h5 className="card-title">{note.title}</h5>

@@ -12,10 +12,13 @@ import { Alert } from './Components/Alert';
 import { Login } from './Components/Login';
 import { Signup } from './Components/Signup';
 import { useState } from 'react';
+import LoadingBar from 'react-top-loading-bar';
 
 function App() {
-  // For Alert Mesages
+  // For Top Loading Bar
+  const [progress, setProgress] = useState(0);
 
+  // For Alert Mesages
   const [alert, setAlert] = useState(null);
 
   let showAlertMsg = (message, type) => {
@@ -33,19 +36,27 @@ function App() {
       <NoteState>
         <BrowserRouter>
           <Navbar showAlertMsg={showAlertMsg} />
+          <LoadingBar
+            color='blue'
+            progress={progress}
+            height={3}
+            transitionTime={300}
+            waitingTime={1500}
+            onLoaderFinished={() => setProgress(0)}
+          />
           <Alert alert={alert} />
           <div className="container">
             <Routes>
-              <Route exact path="/" element={<Home showAlertMsg={showAlertMsg} />}></Route>
+              <Route exact path="/" element={<Home showAlertMsg={showAlertMsg} setProgress={setProgress} />}></Route>
             </Routes>
             <Routes>
-              <Route exact path="/about" element={<About />}></Route>
+              <Route exact path="/about" element={<About setProgress={setProgress} />}></Route>
             </Routes>
             <Routes>
-              <Route exact path="/login" element={<Login showAlertMsg={showAlertMsg} />}></Route>
+              <Route exact path="/login" element={<Login showAlertMsg={showAlertMsg} setProgress={setProgress} />}></Route>
             </Routes>
             <Routes>
-              <Route exact path="/signup" element={<Signup showAlertMsg={showAlertMsg} />}></Route>
+              <Route exact path="/signup" element={<Signup showAlertMsg={showAlertMsg} setProgress={setProgress} />}></Route>
             </Routes>
           </div>
         </BrowserRouter>

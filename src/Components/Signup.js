@@ -1,8 +1,18 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
 
 export const Signup = (props) => {
+  // To update Top Loading Bar and change Title of tab 
+  const updateProgress = () => {
+    props.setProgress(100);
+    document.title = "Join iNotebook - iNotebook";
+  }
+  useEffect(() => {
+    updateProgress();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const hostURL = "http://localhost:8000";
   // State to keep track of credentials
   const [credentials, setCredentials] = useState({ name: "", email: "", password: "", confirmpassword: "" });
@@ -11,30 +21,35 @@ export const Signup = (props) => {
 
   // Send the reponse to API and authenticate the user
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const { name, email, password } = credentials;
-    const response = await fetch(`${hostURL}/api/auth/createuser`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name, email, password })
-    });
-    const json = await response.json();
-    console.log(json)
-    if (json.success === true) {
-      // Save the authtoken in local storage & redirect
-      localStorage.setItem('token', json.JWT_AuthToken);
-      props.showAlertMsg("Account Created Successfully", "success");
-      navigate("/login");
-    } else {
-      props.showAlertMsg("This Email address is already registered with a user", "danger");
+    try {
+      e.preventDefault();
+      const { name, email, password } = credentials;
+      const response = await fetch(`${hostURL}/api/auth/createuser`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, password })
+      });
+      const json = await response.json();
+      console.log(json)
+      if (json.success === true) {
+        // Save the authtoken in local storage & redirect
+        localStorage.setItem('token', json.JWT_AuthToken);
+        props.showAlertMsg("Account Created Successfully", "success");
+        navigate("/login");
+      } else {
+        props.showAlertMsg("This Email address is already registered with a user", "danger");
+      }
+    } catch {
+      props.showAlertMsg("Request Timed Out. Check your Internet Connection", "danger");
     }
   }
   // to display the change in every keystroke at input fields 
   const onChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
-  }
+  };
+
   return (
     <div className='container mt-3'>
       <form onSubmit={handleSubmit}>
@@ -44,8 +59,8 @@ export const Signup = (props) => {
           <div id="nameHelp" className="form-text">*Name must be atleast 3 characters long.</div>
         </div>
         <div className="mb-3">
-          <label htmlFor="email" className="form-label">Email address</label>
-          <input type="email" className="form-control" id="email" aria-describedby="emailHelp" onChange={onChange} name='email' />
+          <label htmlFor="email" className="form-label">Email</label>
+          <input type="email" className="form-control" id="email" aria-describedby="emailHelp" onChange={onChange} name='email' placeholder='example@mail.com' />
         </div>
         <div className="mb-3">
           <label htmlFor="password" className="form-label">Password</label>
@@ -56,11 +71,13 @@ export const Signup = (props) => {
           <label htmlFor="confirmpassword" className="form-label">Confirm Password</label>
           <input type="password" className="form-control" id="confirmpassword" onChange={onChange} name='confirmpassword' minLength={6} required />
         </div>
-        <div className="text my-1">
-          {credentials.password !== credentials.confirmpassword && "Password does not matches"}
+        <div className="passwordMatching text my-1">
+          {credentials.password !== credentials.confirmpassword && "Password does not match."}
         </div>
         <button disabled={credentials.name.length < 3 || credentials.password.length < 6 || credentials.confirmpassword.length < 6 || credentials.password !== credentials.confirmpassword} type="submit" className="btn btn-primary my-2">Sign Up</button>
-        <div id="logIn" className="form-text my-2">Already have an account? <Link style={{ textDecoration: "none" }} to="/login"> Sign in </Link> </div>
+        <div id="logIn" className="form-text mt-4 redirect">Already have an account?
+          <Link className='redirect--link' to="/login"> Log in </Link>
+        </div>
       </form>
     </div>
   )
