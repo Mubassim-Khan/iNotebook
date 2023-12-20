@@ -14,7 +14,7 @@ const NoteState = (props) => {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-                    "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjU3NjE3OGJlOTBhMjMwMzJmMDJkOWEyIn0sImlhdCI6MTcwMjMyMTkxNn0.F0r7uvYuQK-l5NOHpHIO_tRtACFum51kPOo_R-bL4dY"
+                    "auth-token": localStorage.getItem("token")
                 },
             });
             const json = await response.json();
@@ -31,7 +31,7 @@ const NoteState = (props) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjU3NjE3OGJlOTBhMjMwMzJmMDJkOWEyIn0sImlhdCI6MTcwMjMyMTkxNn0.F0r7uvYuQK-l5NOHpHIO_tRtACFum51kPOo_R-bL4dY"
+                "auth-token": localStorage.getItem("token")
             },
             body: JSON.stringify({ title, description, tag })
         });
@@ -47,10 +47,11 @@ const NoteState = (props) => {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
-                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjU3NjE3OGJlOTBhMjMwMzJmMDJkOWEyIn0sImlhdCI6MTcwMjMyMTkxNn0.F0r7uvYuQK-l5NOHpHIO_tRtACFum51kPOo_R-bL4dY"
+                "auth-token": localStorage.getItem("token")
             },
             body: JSON.stringify({ title, description, tag }),
         });
+        // eslint-disable-next-line
         const json = await response.json();
         // A new variable to set the state according to the JSON (notes)
         const newNotes = JSON.parse(JSON.stringify(notes));
@@ -74,9 +75,10 @@ const NoteState = (props) => {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
-                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjU3NjE3OGJlOTBhMjMwMzJmMDJkOWEyIn0sImlhdCI6MTcwMjMyMTkxNn0.F0r7uvYuQK-l5NOHpHIO_tRtACFum51kPOo_R-bL4dY"
+                "auth-token": localStorage.getItem("token")
             },
         });
+        // eslint-disable-next-line
         const json = await response.json();
         const newNotes = notes.filter((note) => { return note._id !== id })
         setNotes(newNotes);

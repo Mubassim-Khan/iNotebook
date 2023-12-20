@@ -23,8 +23,8 @@ export const Login = (props) => {
         if (json.success === true) {
             // Save the authtoken in local storage & redirect
             localStorage.setItem('token', json.JWT_AuthToken);
+            props.showAlertMsg("Logged In Successfully", "success");
             navigate("/");
-            props.showAlertMsg("Logged in Successfully", "success");
         } else {
             props.showAlertMsg("Invalid Credentials", "danger");
         }
@@ -35,7 +35,7 @@ export const Login = (props) => {
     }
 
     return (
-        <div className="container">
+        <div className="container mt-3">
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email address</label>

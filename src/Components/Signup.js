@@ -25,8 +25,8 @@ export const Signup = (props) => {
     if (json.success === true) {
       // Save the authtoken in local storage & redirect
       localStorage.setItem('token', json.JWT_AuthToken);
+      props.showAlertMsg("Account Created Successfully", "success");
       navigate("/login");
-      props.showAlertMsg("Account Created Successfully", "success")
     } else {
       props.showAlertMsg("This Email address is already registered with a user", "danger");
     }
@@ -36,7 +36,7 @@ export const Signup = (props) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value })
   }
   return (
-    <div>
+    <div className='container mt-3'>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">Full Name</label>
