@@ -3,11 +3,12 @@ import noteContext from '../Context/notes/noteContext'
 import { NoteItem } from './NoteItem';
 import { AddNote } from './AddNote';
 import { useNavigate } from 'react-router';
+import { DeleteNote } from './DeleteNote';
 
 export const Notes = (props) => {
     let navigate = useNavigate();
     const context = useContext(noteContext);
-    const { notes, fetchNotes, editNote } = context;
+    const { notes, fetchNotes, editNote, deleteNote } = context;
     // Function call using useEffect
     useEffect(() => {
         if (localStorage.getItem("token")) {
@@ -39,35 +40,40 @@ export const Notes = (props) => {
         setNote({ id: currentNote._id, Etitle: currentNote.title, Edescription: currentNote.description, Etag: currentNote.tag });
     };
 
+    const handleDelete = () => {
+        deleteNote(note._id);
+        props.showAlertMsg("Note Deleted Successfully", "success");
+    };
+
     return (
         <>
             {/* Import new notes from AddNote component */}
             <AddNote showAlertMsg={props.showAlertMsg} />
 
-            {/*  Modal to update data  */}
+            {/*  Modal to Update Note  */}
             <button type="button" className="btn btn-primary d-none" data-bs-toggle="modal" ref={ref} data-bs-target="#exampleModal"></button>
             <div className="modal fade mt-3" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="exampleModalLabel">Edit Note</h1>
+                            <h1 className="modal-title fs-5 notes--title" id="exampleModalLabel">Edit Note</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
                             {/* Form of Note */}
                             <form className='my-3'>
                                 <div className="mb-3">
-                                    <label htmlFor="title" className="form-label">Title</label>
+                                    <label htmlFor="title" className="form-label notes--field">Title</label>
                                     <input type="text" className="form-control" id="Etitle" name="Etitle" aria-describedby="emailHelp" autoComplete='off' value={note.Etitle} onChange={onChange} minLength={3} required />
                                     <div id="textHelp" className="form-text">*Title must be atleast 3 characters long.</div>
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="description" className="form-label">Description</label>
+                                    <label htmlFor="description" className="form-label notes--field">Description</label>
                                     <input type="text" className="form-control" id="Edescription" name='Edescription' autoComplete='off' value={note.Edescription} onChange={onChange} minLength={5} required />
                                     <div id="descriptionHelp" className="form-text">*Description must be atleast 5 characters long.</div>
                                 </div>
                                 <div className="mb-3">
-                                    <label htmlFor="tag" className="form-label">Tag</label>
+                                    <label htmlFor="tag" className="form-label notes--field">Tag</label>
                                     <input type="text" className="form-control" id="Etag" name='Etag' autoComplete='off' value={note.Etag} onChange={onChange} />
                                     <div id="emailHelp" className="form-text">Enter a tag to easily categorize notes.</div>
                                 </div>
@@ -81,8 +87,28 @@ export const Notes = (props) => {
                 </div>
             </div>
 
+            {/* <DeleteNote showAlertMsg={props.showAlertMsg} /> */}
+{/* 
+            <div className="modal" tabIndex="-1">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title">Delete Note</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            <p>Are you sure you want to delete note?</p>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-primary" onClick={handleDelete} >Delete Note</button>
+                        </div>
+                    </div>
+                </div>
+            </div> */}
+
             <div className="row my-3">
-                <h3>Your Notes</h3>
+                <h3 className='notes--title mt-3 mb-2'>Your Notes</h3>
                 <div className="container mx-1 my-1">
                     {notes.length === 0 && "No notes to display, Please add a note."}
                 </div>

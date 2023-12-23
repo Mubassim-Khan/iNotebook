@@ -13,6 +13,8 @@ import { Login } from './Components/Login';
 import { Signup } from './Components/Signup';
 import { useState } from 'react';
 import LoadingBar from 'react-top-loading-bar';
+import { Footer } from './Components/Footer';
+import { Contact } from './Components/Contact';
 
 function App() {
   // For Top Loading Bar
@@ -53,12 +55,16 @@ function App() {
               <Route exact path="/about" element={<About setProgress={setProgress} />}></Route>
             </Routes>
             <Routes>
+              <Route exact path="/contact" element={<Contact showAlertMsg={showAlertMsg} setProgress={setProgress} />}></Route>
+            </Routes>
+            <Routes>
               <Route exact path="/login" element={<Login showAlertMsg={showAlertMsg} setProgress={setProgress} />}></Route>
             </Routes>
             <Routes>
               <Route exact path="/signup" element={<Signup showAlertMsg={showAlertMsg} setProgress={setProgress} />}></Route>
             </Routes>
           </div>
+          <Footer />
         </BrowserRouter>
       </NoteState>
     </>

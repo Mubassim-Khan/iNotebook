@@ -13,7 +13,8 @@ export const Login = (props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const hostURL = "http://localhost:8000";
+    const hostURL = process.env.REACT_APP_HOST_URL;
+
     // State to keep track of credentials
     const [credentials, setCredentials] = useState({ email: "", password: "" });
     // useNavigate to redirect to Home page of Notes
@@ -49,7 +50,7 @@ export const Login = (props) => {
     }
 
     return (
-        <div className="container mt-3">
+        <div className="container mt-3 login--container">
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email</label>

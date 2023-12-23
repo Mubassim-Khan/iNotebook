@@ -13,7 +13,7 @@ export const Signup = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const hostURL = "http://localhost:8000";
+  const hostURL = process.env.REACT_APP_HOST_URL;
   // State to keep track of credentials
   const [credentials, setCredentials] = useState({ name: "", email: "", password: "", confirmpassword: "" });
   // useNavigate to redirect to Home page of Notes
@@ -51,7 +51,7 @@ export const Signup = (props) => {
   };
 
   return (
-    <div className='container mt-3'>
+    <div className='container mt-3 signup--container'>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">Full Name</label>
@@ -72,7 +72,9 @@ export const Signup = (props) => {
           <input type="password" className="form-control" id="confirmpassword" onChange={onChange} name='confirmpassword' minLength={6} required />
         </div>
         <div className="passwordMatching text my-1">
-          {credentials.password !== credentials.confirmpassword && "Password does not match."}
+          {credentials.password !== credentials.confirmpassword && 
+          "⚠️ Password does not match."
+          }
         </div>
         <button disabled={credentials.name.length < 3 || credentials.password.length < 6 || credentials.confirmpassword.length < 6 || credentials.password !== credentials.confirmpassword} type="submit" className="btn btn-primary my-2">Sign Up</button>
         <div id="logIn" className="form-text mt-4 redirect">Already have an account?

@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
 import noteContext from '../Context/notes/noteContext';
+import { DeleteNote } from './DeleteNote';
 
 export const NoteItem = (props) => {
     // Context of Notes
@@ -11,6 +12,16 @@ export const NoteItem = (props) => {
     const toggleButton = () => {
         setToggle((prevToggle) => (prevToggle === "ellipsis" ? "xmark" : "ellipsis"));
     };
+
+    const [modalOpen, setModalOpen] = useState(false);
+    const openModal = () => {
+        setModalOpen(true);
+    }
+
+    const closeModal = () => {
+        setModalOpen(false);
+    }
+
     return (
         <div className='col-md-3'>
             <div className="card my-3">
@@ -31,7 +42,11 @@ export const NoteItem = (props) => {
                             {/* Delete & Edit Buttons */}
                             <div className="collapse multi-collapse" id={`multiCollapseExample${note._id}`}>
                                 <div className="d-flex flex-column">
-                                    <i className="fa-solid fa-trash my-2" onClick={() => { deleteNote(note._id); props.showAlertMsg("Note Deleted Successfully", "success") }}></i>
+
+                                    <i className="fa-solid fa-trash my-2" onClick={()=>{openModal()}} ></i>
+
+                                    {modalOpen && <DeleteNote closeModal={closeModal}/>}
+
                                     <i className="fa-solid fa-pen-to-square my-2" onClick={() => { updateNote(note) }}></i>
                                 </div>
                             </div>
