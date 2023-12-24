@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react'
+import "animate.css"
+import TrackVisibility from "react-on-screen"
 
 export const About = (props) => {
   // To update Top Loading Bar and change Title of tab 
@@ -12,11 +14,16 @@ export const About = (props) => {
   }, []);
   return (
     <div className='container mt-1'>
-      <h2 className='about--heading'>About iNotebook</h2>
-      <p className='about-text-center'>
-        {/* Welcome to iNotebook, a simple note-taking app to help you organize your thoughts and ideas. */}
-        iNotebook is your personalized note taking app, where you can store your notes over cloud & can access them anywhere, anytime.
-      </p>
+      <TrackVisibility>
+        {({ isVisible }) =>
+          <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
+            <h2 className='about--heading'>About iNotebook</h2>
+            <p className='about-text-center'>
+              iNotebook is your personalized note taking app, where you can store your notes over cloud & can access them anywhere, anytime.
+            </p>
+          </div>
+        }
+      </TrackVisibility>
       <h3 className='about--other-headings'>Features</h3>
       <ul className='about-text'>
         <li>Create, edit, and delete notes</li>

@@ -1,5 +1,7 @@
 import React, { useContext, useState } from 'react'
 import noteContext from '../Context/notes/noteContext';
+import "animate.css"
+import TrackVisibility from "react-on-screen"
 
 export const AddNote = (props) => {
     const context = useContext(noteContext);
@@ -19,7 +21,14 @@ export const AddNote = (props) => {
 
     return (
         <div className="container my-3 mt-3">
-            <h3 className='notes--title'>Add a Note</h3>
+            <TrackVisibility>
+                {({ isVisible }) =>
+                    <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
+                        <h3 className='notes--title'>Add a Note</h3>
+                    </div>
+                }
+            </TrackVisibility>
+
             <form className='my-3'>
                 <div className="mb-3">
                     <label htmlFor="title" className="form-label notes--field">Title</label>

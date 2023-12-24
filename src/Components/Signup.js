@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
-import sideImage from "../Assets/undraw_file_sync_ot38.svg"
+import sideImage from "../Assets/undraw_file_sync_ot38.svg";
 
 export const Signup = (props) => {
   // To update Top Loading Bar and change Title of tab 
@@ -97,7 +97,8 @@ export const Signup = (props) => {
                         <input type="password" className="form-control" id="confirmpassword" onChange={onChange} name='confirmpassword' minLength={6} required />
                       </div>
                       <div className="passwordMatching text my-1">
-                        {credentials.password !== credentials.confirmpassword &&
+                        {
+                          credentials.password !== credentials.confirmpassword &&
                           "⚠️ Password does not match."
                         }
                       </div>

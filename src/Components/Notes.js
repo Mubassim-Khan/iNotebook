@@ -4,6 +4,8 @@ import { NoteItem } from './NoteItem';
 import { AddNote } from './AddNote';
 import { useNavigate } from 'react-router';
 import { DeleteNote } from './DeleteNote';
+import "animate.css"
+import TrackVisibility from "react-on-screen"
 
 export const Notes = (props) => {
     // To update Top Loading Bar and change Title of tab 
@@ -116,7 +118,13 @@ export const Notes = (props) => {
             </div> */}
 
             <div className="row my-3">
-                <h3 className='notes--title mt-3 mb-2'>Your Notes</h3>
+                <TrackVisibility>
+                    {({ isVisible }) =>
+                        <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
+                            <h3 className='notes--title mt-3 mb-2'>Your Notes</h3>
+                        </div>
+                    }
+                </TrackVisibility>
                 <div className="container mx-1 my-1">
                     {notes.length === 0 && "No notes to display, Please add a note."}
                 </div>
