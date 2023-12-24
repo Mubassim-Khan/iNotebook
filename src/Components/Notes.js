@@ -6,11 +6,19 @@ import { useNavigate } from 'react-router';
 import { DeleteNote } from './DeleteNote';
 
 export const Notes = (props) => {
+    // To update Top Loading Bar and change Title of tab 
+    const updateProgress = () => {
+        props.setProgress(100);
+        document.title = "Your Notes - iNotebook";
+    }
     let navigate = useNavigate();
     const context = useContext(noteContext);
     const { notes, fetchNotes, editNote, deleteNote } = context;
     // Function call using useEffect
     useEffect(() => {
+        updateProgress();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+
         if (localStorage.getItem("token")) {
             fetchNotes();
         } else {
@@ -88,7 +96,7 @@ export const Notes = (props) => {
             </div>
 
             {/* <DeleteNote showAlertMsg={props.showAlertMsg} /> */}
-{/* 
+            {/* 
             <div className="modal" tabIndex="-1">
                 <div className="modal-dialog">
                     <div className="modal-content">

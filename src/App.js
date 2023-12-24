@@ -15,6 +15,7 @@ import { useState } from 'react';
 import LoadingBar from 'react-top-loading-bar';
 import { Footer } from './Components/Footer';
 import { Contact } from './Components/Contact';
+import { Notes } from './Components/Notes';
 
 function App() {
   // For Top Loading Bar
@@ -56,6 +57,9 @@ function App() {
             </Routes>
             <Routes>
               <Route exact path="/contact" element={<Contact showAlertMsg={showAlertMsg} setProgress={setProgress} />}></Route>
+            </Routes>
+            <Routes>
+              <Route exact path="/notes" element={<Notes showAlertMsg={showAlertMsg} setProgress={setProgress} />}></Route>
             </Routes>
             <Routes>
               <Route exact path="/login" element={<Login showAlertMsg={showAlertMsg} setProgress={setProgress} />}></Route>

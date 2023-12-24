@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
+import sideImage from "../Assets/undraw_file_sync_ot38.svg"
 
 export const Signup = (props) => {
   // To update Top Loading Bar and change Title of tab 
@@ -51,36 +52,68 @@ export const Signup = (props) => {
   };
 
   return (
-    <div className='container mt-3 signup--container'>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="name" className="form-label">Full Name</label>
-          <input type="text" className="form-control" id="name" aria-describedby="emailHelp" onChange={onChange} name='name' minLength={3} required />
-          <div id="nameHelp" className="form-text">*Name must be atleast 3 characters long.</div>
+    <>
+      <div className="content">
+        <div className='container mt-3 signup--container'>
+          <div className="row">
+            <div className="col-md-6 order-md-2">
+              <img src={sideImage} alt="coverImage" className="img-fluid" />
+            </div>
+
+            <div className="col-md-6 contents">
+              <div className="row justify-content-center">
+                <div className="col-md-8">
+                  <div className="mb-4">
+                    <h3 className='signup--heading'>Sign up to<strong> iNotebook</strong></h3>
+                  </div>
+
+                  <form onSubmit={handleSubmit}>
+                    <div className="mb-3">
+                      <div className="form-group first">
+                        <label htmlFor="name" className="form-label">Full Name</label>
+                        <input type="text" className="form-control" id="name" aria-describedby="emailHelp" onChange={onChange} name='name' minLength={3} required />
+                        <div id="nameHelp" className="form-text">*Name must be atleast 3 characters long.</div>
+                      </div>
+                    </div>
+
+                    <div className="mb-3">
+                      <div className="form-group first">
+                        <label htmlFor="email" className="form-label">Email</label>
+                        <input type="email" className="form-control" id="email" aria-describedby="emailHelp" onChange={onChange} name='email' placeholder='example@mail.com' />
+                      </div>
+                    </div>
+
+                    <div className="mb-3">
+                      <div className="form-group first">
+                        <label htmlFor="password" className="form-label">Password</label>
+                        <input type="password" className="form-control" id="password" onChange={onChange} name='password' minLength={6} required />
+                        <div id="passwordHelp" className="form-text">*Password must be atleast 6 characters long.</div>
+                      </div>
+                    </div>
+
+                    <div className="mb-3">
+                      <div className="form-group last mb-4">
+                        <label htmlFor="confirmpassword" className="form-label">Confirm Password</label>
+                        <input type="password" className="form-control" id="confirmpassword" onChange={onChange} name='confirmpassword' minLength={6} required />
+                      </div>
+                      <div className="passwordMatching text my-1">
+                        {credentials.password !== credentials.confirmpassword &&
+                          "⚠️ Password does not match."
+                        }
+                      </div>
+                    </div>
+
+                    <button disabled={credentials.name.length < 3 || credentials.password.length < 6 || credentials.confirmpassword.length < 6 || credentials.password !== credentials.confirmpassword} type="submit" className="btn btn-primary btn-block my-2 signup--btn">Sign Up</button>
+                    <div id="logIn" className="form-text mt-4 redirect">Already have an account?
+                      <Link className='redirect--link' to="/login"> Log in </Link>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">Email</label>
-          <input type="email" className="form-control" id="email" aria-describedby="emailHelp" onChange={onChange} name='email' placeholder='example@mail.com' />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">Password</label>
-          <input type="password" className="form-control" id="password" onChange={onChange} name='password' minLength={6} required />
-          <div id="passwordHelp" className="form-text">*Password must be atleast 6 characters long.</div>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="confirmpassword" className="form-label">Confirm Password</label>
-          <input type="password" className="form-control" id="confirmpassword" onChange={onChange} name='confirmpassword' minLength={6} required />
-        </div>
-        <div className="passwordMatching text my-1">
-          {credentials.password !== credentials.confirmpassword && 
-          "⚠️ Password does not match."
-          }
-        </div>
-        <button disabled={credentials.name.length < 3 || credentials.password.length < 6 || credentials.confirmpassword.length < 6 || credentials.password !== credentials.confirmpassword} type="submit" className="btn btn-primary my-2">Sign Up</button>
-        <div id="logIn" className="form-text mt-4 redirect">Already have an account?
-          <Link className='redirect--link' to="/login"> Log in </Link>
-        </div>
-      </form>
-    </div>
+      </div>
+    </>
   )
 }

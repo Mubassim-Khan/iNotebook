@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import Logo from "../Assets/inotebook-icon.jpg"
 
 export const Navbar = (props) => {
     const location = useLocation();
@@ -15,7 +16,7 @@ export const Navbar = (props) => {
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <div className="container-md gx-0">
                         <Link to="/">
-                            <img src="" alt='logo' style={{ height: "40px", width: "110px", borderRadius: "5px" }} />
+                            <img src={Logo} alt='logo' className='navbar--logo' />
                         </Link>
                         <Link className="navbar-brand mx-3" to="/">iNotebook</Link>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,6 +32,9 @@ export const Navbar = (props) => {
                                 </li>
                                 <li className="nav-item mx-1">
                                     <Link className={`nav-link ${location.pathname} === "/contact" ? "active" : ""`} to="/contact">Contact</Link>
+                                </li>
+                                <li className="nav-item mx-1">
+                                    <Link className={`nav-link ${location.pathname} === "/notes" ? "active" : ""`} to="/notes">Notes</Link>
                                 </li>
                             </ul>
                             {!localStorage.getItem("token") ?
