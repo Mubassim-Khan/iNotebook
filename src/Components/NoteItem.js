@@ -1,26 +1,22 @@
 import React, { useContext, useState } from 'react'
 import noteContext from '../Context/notes/noteContext';
-import { DeleteNote } from './DeleteNote';
 
 export const NoteItem = (props) => {
     // Context of Notes
     const context = useContext(noteContext);
     const { deleteNote } = context;
-    const { note, updateNote } = props;
+    const { note, updateNote, delNote } = props;
     // To change the icon of options and close
     const [toggle, setToggle] = useState("ellipsis");
     const toggleButton = () => {
         setToggle((prevToggle) => (prevToggle === "ellipsis" ? "xmark" : "ellipsis"));
     };
 
-    const [modalOpen, setModalOpen] = useState(false);
-    const openModal = () => {
-        setModalOpen(true);
-    }
 
-    const closeModal = () => {
-        setModalOpen(false);
-    }
+    // const delNote = () => {
+    //     deleteNote(note._id);
+    //     props.showAlertMsg("Note Deleted Successfully", "success");
+    // }
 
     return (
         <div className='col-md-3'>
@@ -42,10 +38,7 @@ export const NoteItem = (props) => {
                             {/* Delete & Edit Buttons */}
                             <div className="collapse multi-collapse" id={`multiCollapseExample${note._id}`}>
                                 <div className="d-flex flex-column">
-
-                                    <i className="fa-solid fa-trash my-2" onClick={()=>{openModal()}} ></i>
-
-                                    {modalOpen && <DeleteNote closeModal={closeModal}/>}
+                                    <i className="fa-solid fa-trash my-2" onClick={(e) => { e.preventDefault(); delNote(note) }} ></i>
 
                                     <i className="fa-solid fa-pen-to-square my-2" onClick={() => { updateNote(note) }}></i>
                                 </div>

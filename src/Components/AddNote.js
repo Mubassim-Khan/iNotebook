@@ -9,10 +9,14 @@ export const AddNote = (props) => {
     const [note, setNote] = useState({ title: "", description: "", tag: "" });
     // New content of note is added from Context (NoteState)
     const handleSubmit = (e) => {
-        e.preventDefault();
-        addNote(note.title, note.description, note.tag);
-        setNote({ title: "", description: "", tag: "" });
-        props.showAlertMsg("New Note Added Successfully", "success")
+        try {
+            e.preventDefault();
+            addNote(note.title, note.description, note.tag);
+            setNote({ title: "", description: "", tag: "" });
+            props.showAlertMsg("New Note Added Successfully", "success")
+        } catch {
+            props.showAlertMsg("Request Timed Out. Check your Internet Connection", "danger");
+        }
     }
     // Set the title, description & tag of a new note
     const onChange = (e) => {

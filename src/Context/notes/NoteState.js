@@ -86,25 +86,28 @@ const NoteState = (props) => {
 
     // -----
 
-    // const [note, setNote] = useState({ id: "", Etitle: "", Edescription: "", Etag: "null" });
+    const [note, setNote] = useState({ id: "", Etitle: "", Edescription: "", Etag: "null" });
 
-    // const refClose = useRef("");
-    // const ref = useRef("");
+    const refClose = useRef("");
+    const ref = useRef("");
 
-    // const handleSubmit = () => {
-    //     editNote(note.id, note.Etitle, note.Etitle, note.Edescription);
-    //     refClose.current.click();
-    // }
+    const handleSubmit = () => {
+        editNote(note.id, note.Etitle, note.Etitle, note.Edescription);
+        refClose.current.click();
+    }
 
-    // const updateNote = (currentNote) => {
-    //     ref.current.click();
-    //     setNote({ id: currentNote._id, Etitle: currentNote.title, Edescription: currentNote.description, Etag: currentNote.tag });
-    // };
+    const updateNote = (currentNote) => {
+        ref.current.click();
+        setNote({ id: currentNote._id, Etitle: currentNote.title, Edescription: currentNote.description, Etag: currentNote.tag });
+    };
 
-    // <NoteContext.Provider value={{ notes, addNote, editNote, deleteNote, fetchNotes, handleSubmit, updateNote, refClose, setNote, note }}>
+    // <NoteContext.Provider value={{ notes, addNote, editNote, deleteNote, fetchNotes }}>
+    //     {props.children}
 
     return (
-        <NoteContext.Provider value={{ notes, addNote, editNote, deleteNote, fetchNotes }}>
+
+        // </NoteContext.Provider>
+        <NoteContext.Provider value={{ notes, addNote, editNote, deleteNote, fetchNotes, handleSubmit, updateNote, refClose, setNote, note }}>
             {props.children}
         </NoteContext.Provider>
     )

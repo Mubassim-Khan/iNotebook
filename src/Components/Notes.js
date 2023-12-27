@@ -33,26 +33,44 @@ export const Notes = (props) => {
 
     // Updated content of note is added & also closes model with ref to close btn
     const handleSubmit = () => {
-        editNote(note.id, note.Etitle, note.Edescription, note.Etag);
-        refClose.current.click();
-        props.showAlertMsg("Note Updated Successfully", "success")
+        try {
+            editNote(note.id, note.Etitle, note.Edescription, note.Etag);
+            refClose.current.click();
+            props.showAlertMsg("Note Updated Successfully", "success");
+        } catch {
+            props.showAlertMsg("Request Timed Out. Check your Internet Connection", "danger");
+        }
     }
     // Set the title, description & tag of updated note
     const onChange = (e) => {
         setNote({ ...note, [e.target.name]: e.target.value })
     }
     // useRef to populate the previous data fields
-    const ref = useRef("");
-    const refClose = useRef("");
+    const ref = useRef(null);
+    const refClose = useRef(null);
     // Function to update a note & set state of note with all 4 attributes
     const updateNote = (currentNote) => {
         ref.current.click();
         setNote({ id: currentNote._id, Etitle: currentNote.title, Edescription: currentNote.description, Etag: currentNote.tag });
     };
 
-    const handleDelete = () => {
-        deleteNote(note._id);
-        props.showAlertMsg("Note Deleted Successfully", "success");
+    // const newref = useRef("");
+    // const newrefClose = useRef("");
+
+    const handleDelete = async (note) => {
+        try {
+            refClose.current.click();
+            await deleteNote(note.id);
+            props.showAlertMsg("Note Deleted Successfully", "success");
+        } catch (error) {
+            console.log("Error deleting note:", error);
+            props.showAlertMsg("Error deleting note. Please try again.", "danger");
+        }
+    };
+
+    const delNote = (currentNoteId) => {
+        ref.current.click();
+        setNote({ id: currentNoteId._id });
     };
 
     return (
@@ -61,7 +79,7 @@ export const Notes = (props) => {
             <AddNote showAlertMsg={props.showAlertMsg} />
 
             {/*  Modal to Update Note  */}
-            <button type="button" className="btn btn-primary d-none" data-bs-toggle="modal" ref={ref} data-bs-target="#exampleModal"></button>
+            {/* <button type="button" className="btn btn-primary d-none" data-bs-toggle="modal" ref={ref} data-bs-target="#exampleModal"></button>
             <div className="modal fade mt-3" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
@@ -69,9 +87,9 @@ export const Notes = (props) => {
                             <h1 className="modal-title fs-5 notes--title" id="exampleModalLabel">Edit Note</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div className="modal-body">
-                            {/* Form of Note */}
-                            <form className='my-3'>
+                        <div className="modal-body"> */}
+            {/* Form of Note */}
+            {/* <form className='my-3'>
                                 <div className="mb-3">
                                     <label htmlFor="title" className="form-label notes--field">Title</label>
                                     <input type="text" className="form-control" id="Etitle" name="Etitle" aria-describedby="emailHelp" autoComplete='off' value={note.Etitle} onChange={onChange} minLength={3} required />
@@ -95,11 +113,12 @@ export const Notes = (props) => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             {/* <DeleteNote showAlertMsg={props.showAlertMsg} /> */}
-            {/* 
-            <div className="modal" tabIndex="-1">
+
+            <button type="button" className="btn btn-primary" data-bs-toggle="modal" ref={ref} data-bs-target="#exampleModal"></button>
+            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -110,12 +129,12 @@ export const Notes = (props) => {
                             <p>Are you sure you want to delete note?</p>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary" onClick={handleDelete} >Delete Note</button>
+                            <button ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-primary" onClick={() => handleDelete(note)} >Delete Note</button>
                         </div>
                     </div>
                 </div>
-            </div> */}
+            </div>
 
             <div className="row my-3">
                 <TrackVisibility>
@@ -129,7 +148,7 @@ export const Notes = (props) => {
                     {notes.length === 0 && "No notes to display, Please add a note."}
                 </div>
                 {notes.map((note) => {
-                    return <NoteItem key={note._id} updateNote={updateNote} note={note} showAlertMsg={props.showAlertMsg} />
+                    return <NoteItem key={note._id} updateNote={updateNote} note={note} handleDelete={handleDelete} delNote={delNote} showAlertMsg={props.showAlertMsg} />
                 })}
             </div>
         </>
