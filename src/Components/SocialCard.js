@@ -43,7 +43,6 @@ export const SocialCard = () => {
                         <div className="card-body">
                             <div className="container pt-1">
                                 <section className="mb-2">
-                                    {/* Facebook */}
                                     {data.map((icons, id) => {
                                         return (
                                             <Link
