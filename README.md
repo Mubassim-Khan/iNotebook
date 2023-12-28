@@ -1,4 +1,99 @@
-# Getting Started with Create React App
+# iNotebook
+
+This repository contains the code of a cloud notebook app using MERN stack, Bootstrap, Animate CSS & Materials Icon etc. The project creates the visual designs, animations, different sections, databases & all other parts which are required and necessary for building a notebook application.
+
+## Preview
+
+![Preview 1 Image](https://github.com/Mubassim-Khan/iNotebook/blob/master/src/Assets/Preview%201.png)
+
+![Preview 2 Image](https://github.com/Mubassim-Khan/iNotebook/blob/master/src/Assets/Preview_2.png)
+
+## Features
+
+- Responsive design: The web page adapts to different screen sizes, ensuring a consistent user experience on desktop & mobile devices.
+- Interactive components: The page includes interactive elements such as buttons, cards, animations & other hover effects on buttons.
+- CSS styling: The stylesheets provide a sleek and modern look.
+- Animations: Very smart & simple animations appears when switching into different sections.
+- UI Tracking: By using Trackvisiblity, the current position of user on the page can be tracked down in order to improve UI experience.
+- Backend Database: The backend of iNotebook is linked with MongoDB Atlas to store & fetch data, fast and secure.
+- Hashing: By means of hashing, your passwords are end-to-end encrypted and cannot be viewed, hacked or shared. 
+- Authenticator - By the use of JSON Web Token, chances of phishing are minimized & user info is limited to that specific user only.
+
+## Tech used 🛠️
+
+- [React](https://reactjs.org/) - UI Library
+- [MongoDB Atlas](https://www.mongodb.com/atlas) - Database program
+- [Node.Js](https://nodejs.org/en) - JavaScript runtime environment
+- [Express.Js](http://expressjs.com/) - JavaScript Framework
+- [Bootstrap 5](https://getbootstrap.com/) - CSS Framework
+- [Prettier](https://prettier.io/) - Code Formatter
+- [Material Icons](https://mui.com/material-ui/material-icons/) - Material UI Icons
+- [Animate.css](https://animate.style/) - Animations
+- [JSON Web Token](https://jwt.io/) - Authenticator
+- [Express Validator](https://express-validator.github.io) - Validator
+
+## Getting Started (Backend)
+
+[Link to iNotebook Backend](https://github.com/Mubassim-Khan/iNotebook-Backend) - Backend 
+
+* Note: Follow these steps incase you are running Backend and Front-End seperately
+
+To get started with Backend project, follow these steps:
+
+1. Clone the repository:
+```bash
+git clone https://github.com/Mubassim-Khan/iNotebook-Backend.git
+```
+
+2. Run this command in terminal:
+```bash
+nodemon index.js
+```
+
+3. Open [http://localhost:8000](http://localhost:8000) to view it in your browser.
+
+## Getting Started (Complete App)
+
+To get started with this project, follow these steps:
+
+* Note: Follow these steps incase you are running Backend and Front-end concurrently
+
+1. Clone these repositories:
+```bash
+git clone https://github.com/Mubassim-Khan/iNotebook/git
+```
+
+```bash
+git clone https://github.com/Mubassim-Khan/iNotebook-Backend.git
+```
+
+2. Place Backend in root of your project directory. 
+
+3. Open the project in your preferred code editor.
+
+4. Run this command in terminal:
+```bash
+npm run both
+```
+
+5. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+## Contributing
+
+Contributions to this project are welcome. If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
+
+## Contact
+
+If you have any questions, suggestions, or feedback, you can reach out to the project maintainer:
+
+- LinkedIn : [Mubassim Ahmed Khan](https://www.linkedin.com/in/mubassim-ahmed-khan/)
+- Email: [mubassimkhan@gmail.com](mailto:mubassimkhan@gmail.com)
+
+---
+
+<!----->
+
+# Getting Started with Create React App (Front-End Only)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -28,43 +123,3 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
