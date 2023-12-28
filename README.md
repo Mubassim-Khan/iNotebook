@@ -44,13 +44,20 @@ To get started with Backend project, follow these steps:
 ```bash
 git clone https://github.com/Mubassim-Khan/iNotebook-Backend.git
 ```
+2. Create a .env file in your project root directory
 
-2. Run this command in terminal:
+3. Initialize 3 env variables, named as:
+- MONGODB_USERNAME - Your MongoDB Atlas username.
+- MONGODB_PASSWORD - Your MongoDB Atlas password.
+- JWT_SECRET_SIGN - Your custom JWT Secret Signature. (Use combination of both Upper & Lowercase alphabets, numbers & symbols).
+- REACT_APP_HOST_URL - Your Host server URL (where your backend is running).
+
+4. Run this command in terminal:
 ```bash
 nodemon index.js
 ```
 
-3. Open [http://localhost:8000](http://localhost:8000) to view it in your browser.
+5. Open [http://localhost:8000](http://localhost:8000) to view it in your browser.
 
 ## Getting Started (Complete App)
 
@@ -69,14 +76,22 @@ git clone https://github.com/Mubassim-Khan/iNotebook-Backend.git
 
 2. Place Backend in root of your project directory. 
 
-3. Open the project in your preferred code editor.
+3. Create a .env file in your project root directory
 
-4. Run this command in terminal:
+4. Initialize 3 env variables, named as:
+- MONGODB_USERNAME - Your MongoDB Atlas username.
+- MONGODB_PASSWORD - Your MongoDB Atlas password.
+- JWT_SECRET_SIGN - Your custom JWT Secret Signature. (Use combination of both Upper & Lowercase alphabets, numbers & symbols).
+- REACT_APP_HOST_URL - Your Host server URL (where your backend is running).
+
+5. Open the project in your preferred code editor.
+
+6. Run this command in terminal:
 ```bash
 npm run both
 ```
 
-5. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+7. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Contributing
 
